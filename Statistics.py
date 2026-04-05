@@ -1,34 +1,42 @@
-import matplotlib.pyplot as plt
 import numpy as np
-
-# Data
-x = np.linspace(0, 10, 100)
-y = np.sin(x)
-
-# Style
-plt.style.use('seaborn-v0_8')
-
-# Create figure
-fig, ax = plt.subplots(figsize=(10, 6))
-
-# Plot
-ax.plot(x, y, color='blue', linewidth=2.5, label='Sine Wave')
-
-# Fill area under curve
-ax.fill_between(x, y, color='blue', alpha=0.1)
-
-# Titles and labels
-ax.set_title("Beautiful Sine Wave Visualization", fontsize=16, fontweight='bold')
-ax.set_xlabel("X Values", fontsize=12)
-ax.set_ylabel("sin(x)", fontsize=12)
-
-# Grid and legend
-ax.grid(True, linestyle='--', alpha=0.6)
-ax.legend()
-
-# Remove top and right borders (for cleaner look)
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-
-# Show plot
-plt.show()
+def ds():
+    a=np.array(list(map(float,input("enter list of numbers:").split())))
+    print("Mean:",np.mean(a),"\nMedian:",np.median(a),"\nVariance:",np.var(a),"\nStandard Deviation:",np.std(a),"\nMIN/MAX:",np.min(a),np.max(a),"\nRange:",np.ptp(a))
+def cr():
+    x=np.array(list(map(float,input("Enter X values :").split())))
+    y=np.array(list(map(float,input("Enter Y values :").split())))
+    print("Correlation Coefficient:\n",np.corrcoef(x, y))
+    slope,intercept=np.polyfit(x,y,1)
+    print("Linear Regression :Y=", slope,"x+ ",intercept)
+def pd():
+    n=int(input("Enter Sample value:"))
+    print("Normal Distribution:",np.random.normal(0,1,n),"\nBinomial Distribution:",np.random.binomial(10,0.5,n),"\nPoisson Distribution:",np.random.poisson(3,n),"\nUniform Distribution:",np.random.uniform(0,1,n))
+def st():
+    a=np.array(list(map(float, input("Enter population data: ").split())))
+    size=int(input("Enter sample size: "))
+    sample = np.random.choice(a,size=size)
+    print("Sample:",sample)
+    print("Sample Mean:",np.mean(sample))
+    print("Sample Variance:",np.var(sample))
+while True:
+    print("--------------------------")
+    print("1. Descriptive Statistics")
+    print("2. Correlation & Regression")
+    print("3. Probability Distributions")
+    print("4. Sampling Theory")
+    choice = input("Enter your choice: ")
+    if choice == "1":
+        ds()
+    elif choice=="2":
+        cr()
+    elif choice=="3":
+        pd()
+    elif choice=="4":
+        st()
+    elif choice=="5":
+        print("Exiting program...")
+        break
+    else:
+        print("Invalid choice")
+        break
+    
